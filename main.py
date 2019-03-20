@@ -12,6 +12,9 @@ def main():
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption("Sugar Scape")
 
+    # 屏幕刷新率
+    clock = pygame.time.Clock()
+
     # 初始化地图
     sugarscape = SugarScape("SugarScapeMap.data")
 
@@ -27,16 +30,15 @@ def main():
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
                 sys.exit()
-            if ev.type == pygame.KEYDOWN:
-                updateAgents(agents)
-                updateSugarScape(sugarscape)
 
-        # 画地图
+        updateAgents(agents)
+        updateSugarScape(sugarscape)
         draw.drawSugarScapeMap(screen, sugarscape)
-        # 画糖人
         draw.drawAgents(screen, agents)
+
         # 刷新屏幕
         pygame.display.flip()
+        clock.tick(3)
 
 
 def updateAgents(agents):
@@ -49,8 +51,6 @@ def updateAgents(agents):
         agent.eatSugar()
         agent.digestSugar()
         print(agent)
-        # if agent.isDead():
-        #    agents.remove(agent)
 
 
 def updateSugarScape(sugarscape):
