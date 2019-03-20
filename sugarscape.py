@@ -3,11 +3,10 @@ import math
 class SugarScape():
 
     def __init__(self, datafile):
-
         # 50*50糖块组成地图(0-49)
         self.sugarDictInitial = self.initSugarDictAccordingToData(datafile)
         self.sugarDictCurrent = self.initSugarDictAccordingToData(datafile)
-        self.sugarRecoveryRate = 4
+        self.sugarRecoveryRate = 1
 
     # 当前位置的糖被吃
     def isEaten(self, posx, posy):
@@ -22,9 +21,9 @@ class SugarScape():
         return math.sqrt((p2[1]-p1[1])**2+(p2[0]-p1[0])**2)
 
     # 根据给定坐标获取当前位置含糖量
-    def getSugarValue(self, posx, posy):
+    def getSugarValue(self, position):
         try:
-            return self.sugarDictCurrent[(posx, posy)]
+            return self.sugarDictCurrent[position]
         except KeyError:
             return None
 
@@ -43,9 +42,7 @@ class SugarScape():
         sugarDict = {}
 
         for line in open(datafile):
-
             str_sugars = line.split("\t")
-
             for str_sugar in str_sugars:
                 x = int(str(str_sugar).split(",")[0])
                 y = int(str(str_sugar).split(",")[1])

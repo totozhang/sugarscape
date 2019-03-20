@@ -17,7 +17,7 @@ def main():
 
     # 初始化200个糖人
     agents = []
-    for index in range(100):
+    for index in range(200):
         agents.append(Agent(sugarscape))
 
     # 开始游戏的主循环
