@@ -1,9 +1,15 @@
 import pygame
-from sugarscape import SugarScape
-from agent import Agent
+
+LIVE_AGENT_COLOR = (0, 0, 128)
+DEAD_AGENT_COLOR = (66, 204, 133)
+COLOR_SUGAR_LVL0 = (250, 226, 209)
+COLOR_SUGAR_LVL1 = (248, 195, 163)
+COLOR_SUGAR_LVL2 = (242, 167, 118)
+COLOR_SUGAR_LVL3 = (239, 137, 75)
+COLOR_SUGAR_LVL4 = (238, 107, 39)
 
 
-def drawRect(screen, position, type, color=(60, 60, 60)):
+def drawRect(screen, position, type, color):
     if (type == "sugar"):
         rectangular = pygame.Rect(10 * position[0], 10 * position[1], 10, 10)
         pygame.draw.rect(screen, color, rectangular)
@@ -15,15 +21,15 @@ def drawRect(screen, position, type, color=(60, 60, 60)):
 def drawSugarScapeMap(screen, sugarscape):
     for position in sugarscape.sugarDictCurrent.keys():
         if (sugarscape.sugarDictCurrent[position] == 0):
-            color = (250, 226, 209)
+            color = COLOR_SUGAR_LVL0
         elif (sugarscape.sugarDictCurrent[position] == 1):
-            color = (248, 195, 163)
+            color = COLOR_SUGAR_LVL1
         elif (sugarscape.sugarDictCurrent[position] == 2):
-            color = (242, 167, 118)
+            color = COLOR_SUGAR_LVL2
         elif (sugarscape.sugarDictCurrent[position] == 3):
-            color = (239, 137, 75)
+            color = COLOR_SUGAR_LVL3
         else:
-            color = (238, 107, 39)
+            color = COLOR_SUGAR_LVL4
 
         drawRect(screen, position, "sugar", color)
 
@@ -31,7 +37,6 @@ def drawSugarScapeMap(screen, sugarscape):
 def drawAgents(screen, agents):
     for agent in agents:
         if agent.isDead():
-            color = (66, 204, 133)
-            drawRect(screen, (agent.posx, agent.posy), "agent", color)
+            drawRect(screen, (agent.posx, agent.posy), "agent", DEAD_AGENT_COLOR)
         else:
-            drawRect(screen, (agent.posx, agent.posy), "agent")
+            drawRect(screen, (agent.posx, agent.posy), "agent", LIVE_AGENT_COLOR)
