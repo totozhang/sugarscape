@@ -12,13 +12,14 @@ def main():
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption("Sugar Scape")
 
-    # 初始化Sugar Scape地图
+    # 初始化地图
     sugarscape = SugarScape("SugarScapeMap.data")
 
-    # 初始化200个糖人
+    # 初始化糖人
     agents = []
     for index in range(200):
-        agents.append(Agent(sugarscape))
+        id = "{:0>2d}".format(index)
+        agents.append(Agent(id, sugarscape))
 
     # 开始游戏的主循环
     while True:
@@ -32,15 +33,14 @@ def main():
 
         # 画地图
         draw.drawSugarScapeMap(screen, sugarscape)
-
         # 画糖人
         draw.drawAgents(screen, agents)
-
-        # 让最近绘制的屏幕可见
+        # 刷新屏幕
         pygame.display.flip()
 
 
 def updateAgents(agents):
+    # 随机调度糖人
     random.shuffle(agents)
 
     for agent in agents:
@@ -48,9 +48,9 @@ def updateAgents(agents):
         agent.moveTo(position)
         agent.eatSugar()
         agent.digestSugar()
-
-        if agent.isDead():
-            agents.remove(agent)
+        print(agent)
+        # if agent.isDead():
+        #    agents.remove(agent)
 
 
 def updateSugarScape(sugarscape):

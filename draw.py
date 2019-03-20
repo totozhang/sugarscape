@@ -30,4 +30,8 @@ def drawSugarScapeMap(screen, sugarscape):
 
 def drawAgents(screen, agents):
     for agent in agents:
-        drawRect(screen, (agent.posx, agent.posy), "agent")
+        if agent.isDead():
+            color = (66, 204, 133)
+            drawRect(screen, (agent.posx, agent.posy), "agent", color)
+        else:
+            drawRect(screen, (agent.posx, agent.posy), "agent")
