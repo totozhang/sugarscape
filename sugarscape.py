@@ -10,7 +10,7 @@ class SugarScape():
         # sugarDictCurrent用于存储当前含糖量
         self.sugarDictCurrent = self.initSugarDictAccordingToData(datafile)
         # 每一个点的含糖量恢复速度
-        self.sugarRecoveryRate = 4
+        self.sugarRecoveryRate = 1
 
     # 给定位置的糖被吃
     def isEaten(self, point):
