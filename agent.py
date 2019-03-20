@@ -8,7 +8,7 @@ class Agent():
         self.identification = identification
         self.posx = random.randint(0, 49)
         self.posy = random.randint(0, 49)
-        self.energy = random.randint(20, 30)
+        self.energy = random.randint(15, 30)
         self.vision = random.randint(1, 6)
         self.metabolism = random.randint(1, 2)
         self.sugarscape = sugarscape
