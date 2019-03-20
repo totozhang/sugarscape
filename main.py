@@ -12,11 +12,9 @@ def main():
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption("Sugar Scape")
 
-    # 屏幕刷新率
-    ticks = 0
+    # 屏幕刷新率和暂停开关
+    round = 0
     clock = pygame.time.Clock()
-
-    # 暂停开关
     pause = True
 
     # 初始化地图
@@ -25,7 +23,7 @@ def main():
     # 初始化糖人
     agents = []
     for index in range(200):
-        id = "{:0>2d}".format(index)
+        id = "{:0>3d}".format(index)
         agents.append(Agent(id, sugarscape))
 
     # 开始游戏的主循环
@@ -39,7 +37,7 @@ def main():
 
         # 开始处理
         if not pause:
-            print("ticks:" + str(ticks))
+            print("Round:" + str(round))
             updateAgents(agents)
             updateSugarScape(sugarscape)
             draw.drawSugarScapeMap(screen, sugarscape)
@@ -47,7 +45,7 @@ def main():
 
             pygame.display.flip()
             clock.tick(3)
-            ticks += 1
+            round += 1
 
 
 def updateAgents(agents):
