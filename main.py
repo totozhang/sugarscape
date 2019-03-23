@@ -18,11 +18,11 @@ def main():
     pause = True
 
     # 初始化地图
-    sugarscape = SugarScape("SugarScapeMap.data")
+    sugarscape = SugarScape("map/map.data")
 
     # 初始化糖人
     agents = []
-    for index in range(200):
+    for index in range(250):
         id = "{:0>3d}".format(index)
         agents.append(Agent(id, sugarscape))
 

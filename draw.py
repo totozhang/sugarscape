@@ -8,7 +8,6 @@ COLOR_SUGAR_LVL2 = (242, 167, 118)
 COLOR_SUGAR_LVL3 = (239, 137, 75)
 COLOR_SUGAR_LVL4 = (238, 107, 39)
 
-
 def drawRect(screen, position, type, color):
     if (type == "sugar"):
         rectangular = pygame.Rect(10 * position[0], 10 * position[1], 10, 10)
