@@ -4,9 +4,13 @@ import random
 import draw
 from sugarscape import SugarScape
 from agent import Agent
+from configparser import ConfigParser
 
 
 def main():
+    config = ConfigParser()
+    config.read("conf/sugarscape.config")
+
     # 初始化游戏屏幕
     pygame.init()
     screen = pygame.display.set_mode((500, 500))
@@ -18,13 +22,13 @@ def main():
     pause = True
 
     # 初始化地图
-    sugarscape = SugarScape("map/map.data")
+    sugarscape = SugarScape("map/map.data", config)
 
     # 初始化糖人
     agents = []
-    for index in range(250):
+    for index in range(config.getint("agent", "MaximumOfPopulation")):
         id = "{:0>3d}".format(index)
-        agents.append(Agent(id, sugarscape))
+        agents.append(Agent(id, sugarscape, config))
 
     # 开始游戏的主循环
     while True:
@@ -44,7 +48,7 @@ def main():
             draw.drawAgents(screen, agents)
 
             pygame.display.flip()
-            clock.tick(3)
+            clock.tick(config.getint("refresh", "speed"))
             round += 1
 
 

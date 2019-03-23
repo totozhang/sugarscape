@@ -1,16 +1,21 @@
 import random
 import operator
+from configparser import ConfigParser
 
 
 class Agent():
 
-    def __init__(self, identification, sugarscape):
+    def __init__(self, identification, sugarscape, config):
+
         self.identification = identification
         self.posx = random.randint(0, 49)
         self.posy = random.randint(0, 49)
-        self.energy = random.randint(35, 50)
-        self.vision = random.randint(1, 6)
-        self.metabolism = random.randint(1, 2)
+        self.energy = random.randint(config.getint("agent", "InitialEnergyMin"),
+                                     config.getint("agent", "InitialEnergyMax"))
+        self.vision = random.randint(config.getint("agent", "VisionMin"),
+                                     config.getint("agent", "VisionMax"), )
+        self.metabolism = random.randint(config.getint("agent", "MetabolismMin"),
+                                         config.getint("agent", "MetabolismMax"))
         self.sugarscape = sugarscape
 
     def __str__(self):

@@ -4,13 +4,13 @@ import math
 class SugarScape():
 
     # 50*50糖块组成地图
-    def __init__(self, datafile):
+    def __init__(self, datafile, config):
         # sugarDictInitial用于存储初始含碳量用于自动恢复参照
         self.sugarDictInitial = self.initSugarDictAccordingToData(datafile)
         # sugarDictCurrent用于存储当前含糖量
         self.sugarDictCurrent = self.initSugarDictAccordingToData(datafile)
         # 每一个点的含糖量恢复速度
-        self.sugarRecoveryRate = 4
+        self.sugarRecoveryRate = config.getint("sugarscape", "SugarRecoveryRate")
 
     # 给定位置的糖被吃
     def isEaten(self, point):
