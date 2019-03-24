@@ -1,6 +1,5 @@
-import random
 import operator
-from configparser import ConfigParser
+import random
 
 
 class Agent():
