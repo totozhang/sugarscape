@@ -3,7 +3,7 @@ import sys
 import pygame
 import draw
 from agent import Agent
-from globconf import Globconf
+from util import Util
 from sugarscape import SugarScape
 
 
@@ -12,16 +12,16 @@ def main():
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption("Sugarscape")
 
-    globConfig = Globconf()
+    util = Util()
     agents_moving_round = 0
     fpsclock = pygame.time.Clock()
     pause = True
 
-    sugarscape = SugarScape("map/map.data", globConfig.InitSugarRecoveryRate)
+    sugarscape = SugarScape("map/map.data", util.InitSugarRecoveryRate)
     agents = []
-    for index in range(globConfig.MaxOfPopulation):
+    for index in range(util.MaxOfPopulation):
         id = "{:0>3d}".format(index)
-        agents.append(Agent(id, sugarscape, globConfig))
+        agents.append(Agent(id, sugarscape, util))
 
     draw.drawSugarScapeMap(screen, sugarscape)
     draw.drawAgents(screen, agents)
@@ -42,7 +42,7 @@ def main():
             draw.drawSugarScapeMap(screen, sugarscape)
             draw.drawAgents(screen, agents)
             pygame.display.flip()
-            fpsclock.tick(globConfig.FPS)
+            fpsclock.tick(util.FPS)
             agents_moving_round += 1
 
 

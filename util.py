@@ -2,7 +2,7 @@ import random
 from configparser import ConfigParser
 
 
-class Globconf():
+class Util():
 
     def __init__(self):
         config = ConfigParser()
