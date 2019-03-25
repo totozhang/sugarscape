@@ -1,8 +1,6 @@
 import random
 import sys
-
 import pygame
-
 import draw
 from agent import Agent
 from globconf import Globconf
@@ -21,7 +19,6 @@ def main():
 
     sugarscape = SugarScape("map/map.data", globConfig.InitSugarRecoveryRate)
     agents = []
-
     for index in range(globConfig.MaxOfPopulation):
         id = "{:0>3d}".format(index)
         agents.append(Agent(id, sugarscape, globConfig))

@@ -18,7 +18,6 @@ class Agent():
         return "%s,(%s,%s),%s,%s,%s" % (
             self.identification, self.posx, self.posy, self.energy, self.vision, self.metabolism)
 
-    # Search the best position on the sugarscape
     def searchSugar(self):
         if self.isDead():
             return
@@ -36,37 +35,33 @@ class Agent():
                 bestposition = position
             if value == maxvalue:
                 bestposition = self.sugarscape.getNearerPostion(self.destiny, (self.posx, self.posy), position,
-                                                                 bestposition)
+                                                                bestposition)
 
-        # 最后得到的bestposition就是自身的位置，则从searchlist中随机选择一个位置走一步
+        # If the best position is the current position, select a random position in list positionsInVision
         if (operator.eq((self.posx, self.posy), bestposition)):
             bestposition = random.choice(positionsInVision)
 
         return bestposition
 
-    # 糖人的可观测范围点的合法集合
     def getValidSearchPositions(self):
         list = []
 
-        # 水平方向
         for x in range(self.posx - self.vision, self.posx + self.vision + 1):
             if self.sugarscape.isValidPosition((x, self.posy)):
                 list.append((x, self.posy))
-        # 垂直方向
+
         for y in range(self.posy - self.vision, self.posy + self.vision + 1):
             if self.sugarscape.isValidPosition((self.posx, y)):
                 list.append((self.posx, y))
         return list
 
-    # 糖人移动到参数给定点
-    def moveTo(self, point):
+    def moveTo(self, position):
         if self.isDead():
             return
 
-        self.posx = point[0]
-        self.posy = point[1]
+        self.posx = position[0]
+        self.posy = position[1]
 
-    # 糖人吃糖
     def eatSugar(self):
         if self.isDead():
             return
@@ -74,11 +69,9 @@ class Agent():
         self.energy += self.sugarscape.getSugarValue((self.posx, self.posy))
         self.sugarscape.isEaten((self.posx, self.posy))
 
-    # 判断糖人是否死亡
     def isDead(self):
         return self.energy < 0
 
-    # 消耗体内的糖
     def digestSugar(self):
         if self.isDead():
             return
