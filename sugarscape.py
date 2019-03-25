@@ -40,7 +40,7 @@ class SugarScape():
         else:
             return destiny.getRandomPoint(p1, p2)
 
-    # The sugar recovery of the sugarscape
+    # The sugar recovery of the SugarScape
     def recover(self):
         for point in self.sugarDictCurrent.keys():
             if self.sugarDictCurrent[point] == self.sugarDictInitial[point]:
