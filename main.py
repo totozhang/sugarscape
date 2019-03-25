@@ -1,32 +1,34 @@
 import random
 import sys
-from configparser import ConfigParser
 
 import pygame
 
 import draw
 from agent import Agent
+from globconf import Globconf
 from sugarscape import SugarScape
 
 
 def main():
-    config = ConfigParser()
-    config.read("conf/sugarscape.config")
-
     pygame.init()
     screen = pygame.display.set_mode((500, 500))
-    pygame.display.set_caption("Sugar Scape")
+    pygame.display.set_caption("Sugarscape")
 
-    round = 0
-    clock = pygame.time.Clock()
+    globConfig = Globconf()
+    agents_moving_round = 0
+    fpsclock = pygame.time.Clock()
     pause = True
 
-    sugarscape = SugarScape("map/map.data", config)
-
+    sugarscape = SugarScape("map/map.data", globConfig.InitSugarRecoveryRate)
     agents = []
-    for index in range(config.getint("agent", "MaximumOfPopulation")):
+
+    for index in range(globConfig.MaxOfPopulation):
         id = "{:0>3d}".format(index)
-        agents.append(Agent(id, sugarscape, config))
+        agents.append(Agent(id, sugarscape, globConfig))
+
+    draw.drawSugarScapeMap(screen, sugarscape)
+    draw.drawAgents(screen, agents)
+    pygame.display.flip()
 
     while True:
 
@@ -37,14 +39,14 @@ def main():
                 pause = not pause
 
         if not pause:
-            print("Round:" + str(round))
+            print("Round:" + str(agents_moving_round))
             updateAgents(agents)
             updateSugarScape(sugarscape)
             draw.drawSugarScapeMap(screen, sugarscape)
             draw.drawAgents(screen, agents)
             pygame.display.flip()
-            clock.tick(config.getint("refresh", "speed"))
-            round += 1
+            fpsclock.tick(globConfig.FPS)
+            agents_moving_round += 1
 
 
 def updateAgents(agents):
@@ -52,7 +54,7 @@ def updateAgents(agents):
 
     for agent in agents:
         print(agent)
-        position = agent.findSugar()
+        position = agent.searchSugar()
         agent.moveTo(position)
         agent.eatSugar()
         agent.digestSugar()

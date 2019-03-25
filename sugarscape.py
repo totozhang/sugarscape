@@ -3,35 +3,44 @@ import math
 
 class SugarScape():
 
-    # 50*50糖块组成地图
-    def __init__(self, datafile, config):
-        # sugarDictInitial用于存储初始含碳量用于自动恢复参照
+    # Sugarscapte 50 * 50 Map
+    def __init__(self, datafile, recovery_rate):
         self.sugarDictInitial = self.initSugarDictAccordingToData(datafile)
-        # sugarDictCurrent用于存储当前含糖量
         self.sugarDictCurrent = self.initSugarDictAccordingToData(datafile)
-        # 每一个点的含糖量恢复速度
-        self.sugarRecoveryRate = config.getint("sugarscape", "SugarRecoveryRate")
+        self.sugarRecoveryRate = recovery_rate
 
-    # 给定位置的糖被吃
+    # The sugar at the given postion is eaten.
     def isEaten(self, point):
         self.sugarDictCurrent[point] = 0
 
-    # 给定位置是否是有效位置
+    # If given position on the map
     def isValidPosition(self, point):
         return (point[0] >= 0 and point[0] <= 49 and point[1] >= 0 and point[1] <= 49)
 
-    # 计算两点之间的距离
+    # Distance between p1 and p2
     def distance(self, p1, p2):
         return int(math.sqrt((p2[1] - p1[1]) ** 2 + (p2[0] - p1[0]) ** 2))
 
-    # 获取给定位置含糖量
+    # Get the sugar amount at given position
     def getSugarValue(self, point):
         try:
             return self.sugarDictCurrent[point]
         except KeyError:
             return None
 
-    # 地图含糖量自动恢复
+    # Get a nearer postion from p1 and p2 to pcurrent
+    def getNearerPostion(self, destiny, pcurrent, p1, p2):
+        distance1 = self.distance(pcurrent, p1)
+        distance2 = self.distance(pcurrent, p2)
+
+        if distance1 < distance2:
+            return p1
+        elif distance1 > distance2:
+            return p2
+        else:
+            return destiny.getRandomPoint(p1, p2)
+
+    # The sugar recovery of the sugarscape
     def recover(self):
         for point in self.sugarDictCurrent.keys():
             if self.sugarDictCurrent[point] == self.sugarDictInitial[point]:
@@ -42,7 +51,7 @@ class SugarScape():
             if self.sugarDictCurrent[point] > self.sugarDictInitial[point]:
                 self.sugarDictCurrent[point] = self.sugarDictInitial[point]
 
-    # Key是点的坐标，Value是含糖量
+    # sugar dictionary, key is the postion x,y, value is the sugar
     def initSugarDictAccordingToData(self, datafile):
         sugarDict = {}
 
