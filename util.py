@@ -44,6 +44,9 @@ def updateAgents(agents):
         agent.eatSugar()
         agent.digestSugar()
 
+        if agent.isDead():
+            agents.remove(agent)
+
 
 def updateSugarScape(sugarscape):
     sugarscape.recover()
