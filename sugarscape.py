@@ -64,3 +64,7 @@ class SugarScape():
                 sugarDict[(x, y)] = s
 
         return sugarDict
+
+    # get the sugar level district
+    def getSugarLevelArea(self, position):
+        return self.sugarDictInitial[position]

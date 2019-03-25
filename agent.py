@@ -4,15 +4,15 @@ import random
 
 class Agent():
 
-    def __init__(self, identification, sugarscape, destiny):
+    def __init__(self, identification, sugarscape, util):
 
         self.identification = identification
         self.sugarscape = sugarscape
-        self.posx, self.posy = destiny.getBornPostion()
-        self.energy = destiny.getBornSugar()
-        self.vision = destiny.getBornVision()
-        self.metabolism = destiny.getBornMetabolism()
-        self.destiny = destiny
+        self.posx, self.posy = util.getBornPostion()
+        self.energy = util.getBornSugar()
+        self.vision = util.getBornVision()
+        self.metabolism = util.getBornMetabolism()
+        self.destiny = util
 
     def __str__(self):
         return "%s,(%s,%s),%s,%s,%s" % (
