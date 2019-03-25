@@ -12,7 +12,8 @@ class Agent():
         self.energy = util.getBornSugar()
         self.vision = util.getBornVision()
         self.metabolism = util.getBornMetabolism()
-        self.destiny = util
+        self.util = util
+        self.bornLevel = sugarscape.getSugarLevelArea((self.posx, self.posy))
 
     def __str__(self):
         return "%s,(%s,%s),%s,%s,%s" % (
@@ -34,7 +35,7 @@ class Agent():
                 maxvalue = value
                 bestposition = position
             if value == maxvalue:
-                bestposition = self.sugarscape.getNearerPostion(self.destiny, (self.posx, self.posy), position,
+                bestposition = self.sugarscape.getNearerPostion(self.util, (self.posx, self.posy), position,
                                                                 bestposition)
 
         # If the best position is the current position, select a random position in list positionsInVision

@@ -1,7 +1,11 @@
 import pygame
 
-LIVE_AGENT_COLOR = (0, 0, 128)
-DEAD_AGENT_COLOR = (66, 204, 133)
+LVL4_AGENT_COLOR = (231, 41, 47)
+LVL3_AGENT_COLOR = (24, 154, 26)
+LVL2_AGENT_COLOR = (255, 246, 163)
+LVL1_AGENT_COLOR = (11, 7, 183)
+LVL0_AGENT_COLOR = (10, 70, 183)
+DEAD_AGENT_COLOR = (255, 255, 255)
 COLOR_SUGAR_LVL0 = (250, 226, 209)
 COLOR_SUGAR_LVL1 = (248, 195, 163)
 COLOR_SUGAR_LVL2 = (242, 167, 118)
@@ -39,5 +43,13 @@ def drawAgents(screen, agents):
     for agent in agents:
         if agent.isDead():
             drawAgent(screen, (agent.posx, agent.posy), DEAD_AGENT_COLOR)
+        elif agent.bornLevel == 4:
+            drawAgent(screen, (agent.posx, agent.posy), LVL4_AGENT_COLOR)
+        elif agent.bornLevel == 3:
+            drawAgent(screen, (agent.posx, agent.posy), LVL3_AGENT_COLOR)
+        elif agent.bornLevel == 2:
+            drawAgent(screen, (agent.posx, agent.posy), LVL2_AGENT_COLOR)
+        elif agent.bornLevel == 1:
+            drawAgent(screen, (agent.posx, agent.posy), LVL1_AGENT_COLOR)
         else:
-            drawAgent(screen, (agent.posx, agent.posy), LIVE_AGENT_COLOR)
+            drawAgent(screen, (agent.posx, agent.posy), LVL0_AGENT_COLOR)
