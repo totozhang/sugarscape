@@ -11,6 +11,7 @@ COLOR_SUGAR_LVL1 = (248, 195, 163)
 COLOR_SUGAR_LVL2 = (242, 167, 118)
 COLOR_SUGAR_LVL3 = (239, 137, 75)
 COLOR_SUGAR_LVL4 = (238, 107, 39)
+COLOR_SCREEN = (240, 240, 240)
 
 
 def drawSugar(screen, position, color):
@@ -21,6 +22,9 @@ def drawSugar(screen, position, color):
 def drawAgent(screen, position, color):
     rectangular = pygame.Rect(10 * position[0] + 3, 10 * position[1] + 3, 4, 4)
     pygame.draw.rect(screen, color, rectangular)
+
+def drawScreenBackground(screen):
+    screen.fill(COLOR_SCREEN)
 
 
 def drawSugarScapeMap(screen, sugarscape):

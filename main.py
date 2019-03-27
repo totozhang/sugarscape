@@ -1,7 +1,5 @@
 import sys
-
 import pygame
-
 import draw
 import proc
 from agent import Agent
@@ -24,6 +22,7 @@ def main():
         id = "{:0>3d}".format(index)
         agents.append(Agent(id, sugarscape, setting))
 
+    draw.drawScreenBackground(screen)
     draw.drawSugarScapeMap(screen, sugarscape)
     draw.drawAgents(screen, agents)
     pygame.display.flip()
