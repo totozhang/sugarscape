@@ -55,6 +55,7 @@ def main():
             pygame.display.flip()
 
             #pyplot
+
             wealths = []
             for agent in agents:
                 wealths.append(agent.energy)
