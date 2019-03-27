@@ -3,27 +3,26 @@ import sys
 import pygame
 
 import draw
+import proc
 from agent import Agent
+from setting import Setting
 from sugarscape import SugarScape
-from util import Util
-from util import updateAgents
-from util import updateSugarScape
 
 
 def main():
+    setting = Setting()
     pygame.init()
-    screen = pygame.display.set_mode((500, 500))
+    screen = pygame.display.set_mode((setting.ScreenWidth, setting.ScreenHeigth))
     pygame.display.set_caption("Sugarscape")
 
-    util = Util()
     fpsclock = pygame.time.Clock()
     pause = True
 
-    sugarscape = SugarScape("map/map.data", util.InitSugarRecoveryRate)
+    sugarscape = SugarScape("map/map.data", setting.InitSugarRecoveryRate)
     agents = []
-    for index in range(util.InitMaxOfPopulation):
+    for index in range(setting.InitMaxOfPopulation):
         id = "{:0>3d}".format(index)
-        agents.append(Agent(id, sugarscape, util))
+        agents.append(Agent(id, sugarscape, setting))
 
     draw.drawSugarScapeMap(screen, sugarscape)
     draw.drawAgents(screen, agents)
@@ -38,13 +37,13 @@ def main():
                 pause = not pause
 
         if not pause:
-            print("Round:" + str(util.Round))
-            updateAgents(agents)
-            updateSugarScape(sugarscape)
+            print("Round:" + str(setting.Round))
+            proc.updateAgents(agents)
+            proc.updateSugarScape(sugarscape)
             draw.drawSugarScapeMap(screen, sugarscape)
             draw.drawAgents(screen, agents)
-            fpsclock.tick(util.FPS)
-            util.Round += 1
+            fpsclock.tick(setting.FPS)
+            setting.Round += 1
             pygame.display.flip()
 
 

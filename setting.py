@@ -2,7 +2,7 @@ import random
 from configparser import ConfigParser
 
 
-class Util():
+class Setting():
 
     def __init__(self):
         config = ConfigParser()
@@ -16,6 +16,8 @@ class Util():
         self.InitSugarRecoveryRate = config.getint("sugarscape", "SugarRecoveryRate")
         self.InitMaxOfPopulation = config.getint("agent", "MaximumOfPopulation")
         self.FPS = config.getint("refresh", "speed")
+        self.ScreenWidth = config.getint("screen", "width")
+        self.ScreenHeigth = config.getint("screen", "height")
         self.Round = 0
 
     def getBornPostion(self):
@@ -33,20 +35,3 @@ class Util():
     def getRandomPoint(self, p1, p2):
         return random.choice([p1, p2])
 
-
-def updateAgents(agents):
-    random.shuffle(agents)
-
-    for agent in agents:
-        print(agent)
-        position = agent.searchSugar()
-        agent.moveTo(position)
-        agent.eatSugar()
-        agent.digestSugar()
-
-        if agent.isDead():
-            agents.remove(agent)
-
-
-def updateSugarScape(sugarscape):
-    sugarscape.recover()

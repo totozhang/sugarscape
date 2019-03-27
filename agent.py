@@ -16,8 +16,8 @@ class Agent():
         self.bornLevel = sugarscape.getSugarLevelArea((self.posx, self.posy))
 
     def __str__(self):
-        return "%s,(%s,%s),%s,%s,%s" % (
-            self.identification, self.posx, self.posy, self.energy, self.vision, self.metabolism)
+        return "%s,(%s,%s),%s,%s,%s,%s" % (
+            self.identification, self.posx, self.posy, self.energy, self.vision, self.metabolism, self.bornLevel)
 
     def searchSugar(self):
         if self.isDead():
@@ -39,7 +39,8 @@ class Agent():
                                                                 bestposition)
 
         # If the best position is the current position, select a random position in list positionsInVision
-        if (operator.eq((self.posx, self.posy), bestposition)):
+        if (operator.eq((self.posx, self.posy), bestposition)) and self.sugarscape.getSugarValue(
+                (self.posx, self.posy)) == 0:
             bestposition = random.choice(positionsInVision)
 
         return bestposition
