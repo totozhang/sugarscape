@@ -1,10 +1,9 @@
 import sys
 import pygame
-import draw
-import proc
-from agent import Agent
-from setting import Setting
-from sugarscape import SugarScape
+from game import proc, draw
+from game.agent import Agent
+from game.setting import Setting
+from game.sugarscape import SugarScape
 
 
 def main():
@@ -23,6 +22,8 @@ def main():
         agents.append(Agent(id, sugarscape, setting))
 
     draw.drawScreenBackground(screen)
+    draw.drawCopyright(screen)
+    draw.drawRoundNumber(screen, setting.Round)
     draw.drawSugarScapeMap(screen, sugarscape)
     draw.drawAgents(screen, agents)
     pygame.display.flip()
@@ -37,6 +38,9 @@ def main():
 
         if not pause:
             print("Round:" + str(setting.Round))
+            draw.drawScreenBackground(screen)
+            draw.drawCopyright(screen)
+            draw.drawRoundNumber(screen, setting.Round)
             proc.updateAgents(agents)
             proc.updateSugarScape(sugarscape)
             draw.drawSugarScapeMap(screen, sugarscape)

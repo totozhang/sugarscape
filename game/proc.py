@@ -1,5 +1,6 @@
 import random
 
+
 def updateAgents(agents):
     random.shuffle(agents)
 
@@ -9,8 +10,7 @@ def updateAgents(agents):
         agent.moveTo(position)
         agent.eatSugar()
         agent.digestSugar()
-
-        #if agent.isDead():
+        # if agent.isDead():
         #    agents.remove(agent)
 
 
