@@ -29,12 +29,7 @@ def main():
     draw.drawAgents(screen, agents)
     pygame.display.flip()
 
-    pyplot.ion()
-    fig = pyplot.figure()
-    ax = fig.add_subplot(1, 1, 1)
-
     while True:
-
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
                 sys.exit()
@@ -54,18 +49,17 @@ def main():
             setting.Round += 1
             pygame.display.flip()
 
-            #pyplot
-
-            wealths = []
-            for agent in agents:
-                wealths.append(agent.energy)
-            ax.hist(wealths, 8)
-            pyplot.xlabel('Interval')
-            pyplot.ylabel('Population')
-            pyplot.title('Wealth distribution')
-            pyplot.grid(True)
-            pyplot.pause(0.03)
-            pyplot.cla()
+            # pyplot
+            if setting.Round % 100 == 0 and setting.Round >= 100:
+                wealths = []
+                for agent in agents:
+                    wealths.append(agent.energy)
+                pyplot.hist(wealths, 5)
+                pyplot.xlabel('Interval')
+                pyplot.ylabel('Population')
+                pyplot.title('Wealth distribution')
+                pyplot.grid(True)
+                pyplot.show()
 
 
 if __name__ == "__main__":
