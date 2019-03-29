@@ -1,9 +1,10 @@
 import sys
 import pygame
-from game import proc, draw
-from game.agent import Agent
-from game.setting import Setting
-from game.sugarscape import SugarScape
+import draw
+import proc
+from agent import Agent
+from setting import Setting
+from sugarscape import SugarScape
 
 
 def main():
