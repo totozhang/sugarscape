@@ -34,7 +34,8 @@ def main():
             if ev.type == pygame.QUIT:
                 sys.exit()
             if ev.type == pygame.KEYDOWN:
-                pause = not pause
+                if ev.key == pygame.K_RETURN:
+                    pause = not pause
 
         if not pause:
             print("Round:" + str(setting.Round))

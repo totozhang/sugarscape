@@ -33,4 +33,4 @@ def plotWeath(agents, figureName):
     pyplot.ylabel('Population')
     pyplot.title('Wealth distribution')
     pyplot.grid(True)
-    pyplot.pause(0.3)
+    pyplot.pause(0.03)
