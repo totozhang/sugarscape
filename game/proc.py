@@ -10,8 +10,9 @@ def updateAgents(agents):
         agent.moveTo(position)
         agent.eatSugar()
         agent.digestSugar()
-        # if agent.isDead():
-        #    agents.remove(agent)
+
+        if agent.isDead():
+            agents.remove(agent)
 
 
 def updateSugarScape(sugarscape):

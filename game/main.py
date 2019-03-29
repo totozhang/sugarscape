@@ -50,11 +50,11 @@ def main():
             pygame.display.flip()
 
             # pyplot
-            if setting.Round % 100 == 0 and setting.Round >= 100:
+            if (setting.Round % 200 == 0 and setting.Round >= 200) or (setting.Round == 1):
                 wealths = []
                 for agent in agents:
                     wealths.append(agent.energy)
-                pyplot.hist(wealths, 5)
+                pyplot.hist(wealths, 6)
                 pyplot.xlabel('Interval')
                 pyplot.ylabel('Population')
                 pyplot.title('Wealth distribution')
