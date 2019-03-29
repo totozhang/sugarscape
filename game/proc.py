@@ -1,4 +1,5 @@
 import random
+from matplotlib import pyplot
 
 
 def updateAgents(agents):
@@ -17,3 +18,20 @@ def updateAgents(agents):
 
 def updateSugarScape(sugarscape):
     sugarscape.recover()
+
+
+def plotWeath(agents, figureName):
+    wealths = []
+
+    for agent in agents:
+        wealths.append(agent.energy)
+
+    pyplot.figure("Sugarscape")
+    pyplot.ion()
+    pyplot.cla()
+    pyplot.hist(wealths, 10)
+    pyplot.xlabel('Interval')
+    pyplot.ylabel('Population')
+    pyplot.title('Wealth distribution')
+    pyplot.grid(True)
+    pyplot.pause(0.03)

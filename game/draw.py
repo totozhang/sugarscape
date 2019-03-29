@@ -9,13 +9,9 @@ DEAD_AGENT_COLOR = (98, 119, 143)
 
 COLOR_SUGAR_LVL0 = (250, 226, 209)
 COLOR_SUGAR_LVL1 = (248, 195, 163)
-#COLOR_SUGAR_LVL1 = (189, 214, 92)
 COLOR_SUGAR_LVL2 = (242, 167, 118)
-#COLOR_SUGAR_LVL2 = (246, 228, 71)
 COLOR_SUGAR_LVL3 = (239, 137, 75)
-#COLOR_SUGAR_LVL3 = (251, 180, 66)
 COLOR_SUGAR_LVL4 = (238, 107, 39)
-#COLOR_SUGAR_LVL4 = (241, 119, 101)
 COLOR_SCREEN = (240, 240, 240)
 
 
@@ -71,7 +67,7 @@ def drawCopyright(screen):
     fontObj = pygame.font.SysFont("Arial", 22)
     textSurfaceObj = fontObj.render("© toto.zhang@gmail.com", True, (0, 0, 0))
     textRectObj = textSurfaceObj.get_rect()
-    textRectObj.topleft = (305, 503)
+    textRectObj.topleft = (305, 505)
     screen.blit(textSurfaceObj, textRectObj)
 
 
@@ -79,5 +75,5 @@ def drawRoundNumber(screen, round):
     fontObj = pygame.font.SysFont("Arial", 22)
     textSurfaceObj = fontObj.render("Round: " + str(round), True, (0, 0, 0))
     textRectObj = textSurfaceObj.get_rect()
-    textRectObj.topleft = (10, 503)
+    textRectObj.topleft = (10, 505)
     screen.blit(textSurfaceObj, textRectObj)

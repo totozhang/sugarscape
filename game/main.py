@@ -4,14 +4,13 @@ from game import proc, draw
 from game.agent import Agent
 from game.setting import Setting
 from game.sugarscape import SugarScape
-from matplotlib import pyplot
 
 
 def main():
     setting = Setting()
     pygame.init()
     screen = pygame.display.set_mode((setting.ScreenWidth, setting.ScreenHeigth))
-    pygame.display.set_caption("Sugarscape")
+    pygame.display.set_caption(setting.Application)
 
     fpsclock = pygame.time.Clock()
     pause = True
@@ -49,17 +48,8 @@ def main():
             setting.Round += 1
             pygame.display.flip()
 
-            # pyplot
-            if (setting.Round % 200 == 0 and setting.Round >= 200) or (setting.Round == 1):
-                wealths = []
-                for agent in agents:
-                    wealths.append(agent.energy)
-                pyplot.hist(wealths, 6)
-                pyplot.xlabel('Interval')
-                pyplot.ylabel('Population')
-                pyplot.title('Wealth distribution')
-                pyplot.grid(True)
-                pyplot.show()
+        if (setting.Round % 10 == 0 and setting.Round >= 10) or (setting.Round == 1):
+            proc.plotWeath(agents, setting.Application)
 
 
 if __name__ == "__main__":

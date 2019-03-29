@@ -18,6 +18,7 @@ class Setting():
         self.FPS = config.getint("refresh", "speed")
         self.ScreenWidth = config.getint("screen", "width")
         self.ScreenHeigth = config.getint("screen", "height")
+        self.Application = config.get("application", "name")
         self.Round = 0
 
     def getBornPostion(self):
@@ -34,4 +35,3 @@ class Setting():
 
     def getRandomPoint(self, p1, p2):
         return random.choice([p1, p2])
-
