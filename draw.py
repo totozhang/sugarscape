@@ -1,17 +1,20 @@
 import pygame
 
 LVL4_AGENT_COLOR = (231, 41, 47)
-LVL3_AGENT_COLOR = (24, 154, 26)
-LVL2_AGENT_COLOR = (11, 7, 183)
-LVL1_AGENT_COLOR = (32, 42, 47)
-LVL0_AGENT_COLOR = (141, 193, 147)
+LVL3_AGENT_COLOR = (38, 173, 246)
+LVL2_AGENT_COLOR = (24, 154, 26)
+LVL1_AGENT_COLOR = (11, 7, 183)
+LVL0_AGENT_COLOR = (32, 42, 47)
+
 DEAD_AGENT_COLOR = (98, 119, 143)
 
+# COLOR_SUGAR_LVL0 = (255, 255, 255)
 COLOR_SUGAR_LVL0 = (250, 226, 209)
 COLOR_SUGAR_LVL1 = (248, 195, 163)
 COLOR_SUGAR_LVL2 = (242, 167, 118)
 COLOR_SUGAR_LVL3 = (239, 137, 75)
 COLOR_SUGAR_LVL4 = (238, 107, 39)
+
 COLOR_SCREEN = (240, 240, 240)
 
 
@@ -37,7 +40,6 @@ def drawSugarScapeMap(screen, sugarscape):
             color = COLOR_SUGAR_LVL3
         else:
             color = COLOR_SUGAR_LVL4
-
         drawSugar(screen, position, color)
 
 
