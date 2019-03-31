@@ -27,6 +27,7 @@ def main():
     draw.drawRoundNumber(screen, setting.Round)
     draw.drawSugarScapeMap(screen, sugarscape)
     draw.drawAgents(screen, agents)
+    proc.plotWeath(agents, setting.Application)
     pygame.display.flip()
 
     while True:

@@ -21,6 +21,7 @@ def updateSugarScape(sugarscape):
 
 
 def plotWeath(agents, figureName):
+    return
     wealths = []
     for agent in agents:
         wealths.append(agent.energy)
